@@ -4,7 +4,7 @@ import os
 # print("Current working directory:", cwd)
 
 # Set the working directory.
-path = r'C:\Users\1dns2\Documents\data_science'
+path = r'C:\Users\1dns2\Documents\data_science\AnimalDataScience'
 os.chdir(path)
 print("Current working directory:", path)
 
@@ -17,7 +17,7 @@ for file in files:
 # Install the rpy2 library.
 # py -m pip install pandas
 
-# Import the rpy2 library.
+# Import the pandas library.
 import pandas as pd
 
 # Import the csv data.
@@ -75,3 +75,72 @@ print(df[df['height'].isnull()])
 import matplotlib.pyplot as plt
 plt.scatter(df['datadog'], df['popularity'])
 plt.show()
+
+# make the polt bigger
+plt.figure(figsize=(30, 30))
+plt.scatter(df['datadog'], df['popularity'])
+plt.show()
+
+# Add breed names to each plot point
+plt.figure(figsize=(30, 30))
+plt.scatter(df['datadog'], df['popularity'])
+for i, txt in enumerate(df['breed']):
+    plt.annotate(txt, (df['datadog'][i], df['popularity'][i]))
+plt.show()
+
+# Make the breed names smaller
+plt.figure(figsize=(30, 30))
+plt.scatter(df['datadog'], df['popularity'])
+for i, txt in enumerate(df['breed']):
+    plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8)
+plt.show()
+
+
+# Label each breed a color that corresponds to its group
+plt.figure(figsize=(30, 30))
+plt.scatter(df['datadog'], df['popularity'])
+for i, txt in enumerate(df['breed']):
+    if df['group'][i] == 'herding':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='red')
+    elif df['group'][i] == 'sporting':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='blue')
+    elif df['group'][i] == 'hound':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='green')
+    elif df['group'][i] == 'terrier':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='orange')
+    elif df['group'][i] == 'non-sporting':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='purple')
+    elif df['group'][i] == 'toy':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='black')
+    elif df['group'][i] == 'working':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='brown')
+plt.show()
+
+# Add a title and axis labels
+plt.figure(figsize=(30, 30))
+plt.scatter(df['datadog'], df['popularity'])
+for i, txt in enumerate(df['breed']):
+    if df['group'][i] == 'herding':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='red')
+    elif df['group'][i] == 'sporting':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='blue')
+    elif df['group'][i] == 'hound':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='green')
+    elif df['group'][i] == 'terrier':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='orange')
+    elif df['group'][i] == 'non-sporting':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='purple')
+    elif df['group'][i] == 'toy':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='black')
+    elif df['group'][i] == 'working':
+        plt.annotate(txt, (df['datadog'][i], df['popularity'][i]), fontsize=8, color='brown')
+plt.title('Best in Show')
+plt.xlabel('Computed Datadog Score')
+plt.ylabel('AKC Popularity Ranking')
+plt.show()
+
+
+# Save the plot to working directory
+plt.savefig('best_in_show.png')
+
+
